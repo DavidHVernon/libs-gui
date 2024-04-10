@@ -272,7 +272,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (void) dealloc
 {
-  NSLog(@"[NSTextView dealloc]");
+  NSLog(@"[NSTextView dealloc]")
   RELEASE(backgroundColor);
   RELEASE(paragraphStyle);
   RELEASE(insertionColor);
