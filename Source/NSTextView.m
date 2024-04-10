@@ -204,6 +204,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (id) initWithTextView: (NSTextView *)tv
 {
+  NSLog(@"[NSTextView initWithTextView:]");
   if ((self = [super init]) != nil)
     {
       flags = (([tv isSelectable]?0x01:0) |
@@ -236,6 +237,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (id) initWithCoder: (NSCoder*)aDecoder
 {
+  NSLog(@"[NSTextView initWithCoder:]");
   if ([aDecoder allowsKeyedCoding])
     {
       ASSIGN(backgroundColor,
@@ -270,6 +272,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (void) dealloc
 {
+  NSLog(@"[NSTextView dealloc]");
   RELEASE(backgroundColor);
   RELEASE(paragraphStyle);
   RELEASE(insertionColor);
