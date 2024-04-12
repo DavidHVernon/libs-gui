@@ -103,6 +103,45 @@
 
 dhsjkl dhaldhja sdhjkdh jad j
 
+void dh_log_close(void);
+void dh_log_open(const char * file_path);
+void dh_log_str(const char * message);
+void dh_log(NSString * message);
+
+void dh_log_close(void) {
+    if (dh_f) {
+        fprintf(dh_f, "Log Close");
+        fclose(dh_f);
+        dh_f = NULL;
+    }
+}
+
+void dh_log_open(const char * file_path) {
+    if (dh_f) {
+        dh_log_close();
+    }
+    dh_f = fopen(file_path, "a");
+    if (dh_f){
+        dh_log_str("Log Open");
+    }
+}
+
+void dh_log(NSString * message) {
+    dh_log_str([message UTF8String]);
+}
+
+void dh_log_str(const char * message) {
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    [formatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss.SSSS |"];
+    const char * date_str = [[formatter stringFromDate:[NSDate now]] UTF8String];
+
+    if (dh_f) {
+        fprintf(dh_f, "%s %s\n", date_str, message);
+        fflush(dh_f);
+    } else {
+        fprintf(stderr, "%s\n", message);
+    }
+}
 
 /*
 NSTextView_actions.m has comments about what methods dealing with user
@@ -204,9 +243,14 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 @implementation NSTextViewSharedData
 
++ (void)initialize
+{
+  dh_log_open("/workspaces/dh_log.txt");
+}
+
 - (id) initWithTextView: (NSTextView *)tv
 {
-  NSLog(@"[NSTextView initWithTextView:]");
+  dh_log(@"[NSTextView initWithTextView:]");
   if ((self = [super init]) != nil)
     {
       flags = (([tv isSelectable]?0x01:0) |
@@ -239,7 +283,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (id) initWithCoder: (NSCoder*)aDecoder
 {
-  NSLog(@"[NSTextView initWithCoder:]");
+  dh_log(@"[NSTextView initWithCoder:]");
   if ([aDecoder allowsKeyedCoding])
     {
       ASSIGN(backgroundColor,
@@ -274,7 +318,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (void) dealloc
 {
-  NSLog(@"[NSTextView dealloc]")
+  dh_log(@"[NSTextView dealloc]")
   RELEASE(backgroundColor);
   RELEASE(paragraphStyle);
   RELEASE(insertionColor);
