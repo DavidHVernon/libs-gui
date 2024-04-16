@@ -320,7 +320,7 @@ Interface for a bunch of internal methods that need to be cleaned up.
 
 - (void) dealloc
 {
-  dh_log(@"[NSTextView dealloc]")
+  dh_log(@"[NSTextView dealloc]");
   RELEASE(backgroundColor);
   RELEASE(paragraphStyle);
   RELEASE(insertionColor);
