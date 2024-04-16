@@ -101,7 +101,9 @@
 #import "GSFastEnumeration.h"
 #import "GSAutocompleteWindow.h"
 
-dhsjkl dhaldhja sdhjkdh jad j
+#import <stdio.h>
+
+static FILE * dh_f = NULL;
 
 void dh_log_close(void);
 void dh_log_open(const char * file_path);
