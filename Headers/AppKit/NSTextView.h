@@ -1,8 +1,3 @@
-// ========== Keysight Technologies Added Changes To Satisfy LGPL 2.x Section 2(a) Requirements ========== 
-// Committed by: Paul Landers 
-// Commit ID: 9bcec869896d0130ece86c3af57d8e212b759989 
-// Date: 2015-08-17 17:41:37 +0000 
-// ========== End of Keysight Technologies Notice ========== 
 /*                                                    -*-objc-*-
    NSTextView.h
 
@@ -36,9 +31,10 @@
 
 #ifndef _GNUstep_H_NSTextView
 #define _GNUstep_H_NSTextView
-#import <GNUstepBase/GSVersionMacros.h>
+#import <AppKit/AppKitDefines.h>
 
 #import <AppKit/NSText.h>
+#import <AppKit/NSTextFinder.h>
 #import <AppKit/NSInputManager.h>
 #import <AppKit/NSDragging.h>
 #import <AppKit/NSTextAttachment.h>
@@ -97,7 +93,8 @@ be stored in the NSTextView. Non-persistant attributes don't, and should
 therefore be stored in the NSLayoutManager to avoid problems.
 */
 
-@interface NSTextView : NSText <NSTextInput, NSUserInterfaceValidations>
+APPKIT_EXPORT_CLASS
+@interface NSTextView : NSText <NSTextInput, NSUserInterfaceValidations, NSTextFinderClient>
 {
   /* These attributes are shared by all text views attached to a layout
   manager. Any changes must be replicated in all those text views. */
@@ -158,7 +155,6 @@ therefore be stored in the NSLayoutManager to avoid problems.
     unsigned uses_find_panel:1;
     unsigned accepts_glyph_info:1;
     unsigned allows_document_background_color_change:1;
-    unsigned isAutoCompleting:2;
   } _tf;
 
 
@@ -253,8 +249,6 @@ therefore be stored in the NSLayoutManager to avoid problems.
   // Text checking (spelling/grammar)
   NSTimer *_textCheckingTimer;
   NSRect _lastCheckedRect;
-
-  NSUndoManager *_fieldEditorUndoManager;
 }
 
 
@@ -351,7 +345,6 @@ to the set of non-range taking varieties. */
 -(void) setAllowsUndo: (BOOL)flag; /* mosx */
 -(BOOL) smartInsertDeleteEnabled;
 -(void) setSmartInsertDeleteEnabled: (BOOL)flag;
--(void)_setFieldEditorUndoManager:(NSUndoManager *)undoManager;
 
 
 /* These methods are like paste: (from NSResponder) but they restrict
