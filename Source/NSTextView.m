@@ -6228,6 +6228,7 @@ or add guards
 
 - (void) _blink: (NSTimer *)t
 {
+  NSLog(@"_blink");
   if (_drawInsertionPointNow)
     {
       _drawInsertionPointNow = NO;
