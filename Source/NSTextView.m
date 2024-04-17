@@ -6304,7 +6304,7 @@ or add guards
     }
   
   [self setNeedsDisplayInRect: _insertionPointRect
-	avoidAdditionalLayout: NO];
+	avoidAdditionalLayout: YES];
   /* Because we are called by a timer which is independent of any
      event processing in the gui runloop, we need to manually update
      the window.  */
