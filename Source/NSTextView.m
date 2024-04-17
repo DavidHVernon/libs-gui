@@ -6441,6 +6441,7 @@ or add guards
 
 - (void) _textCheckingTimerFired: (NSTimer *)t
 {
+  NSLog(@"_textCheckingTimerFired");
   _textCheckingTimer = nil;
 
   if (nil == _layoutManager)
