@@ -6293,7 +6293,6 @@ or add guards
 - (void) _blink: (NSTimer *)t
 {
   NSLog(@"_blink");
-  return;
 
   if (_drawInsertionPointNow)
     {
@@ -6305,7 +6304,7 @@ or add guards
     }
   
   [self setNeedsDisplayInRect: _insertionPointRect
-	avoidAdditionalLayout: YES];
+	avoidAdditionalLayout: NO];
   /* Because we are called by a timer which is independent of any
      event processing in the gui runloop, we need to manually update
      the window.  */
