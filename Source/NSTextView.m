@@ -2206,6 +2206,8 @@ This method is for user changes; see NSTextView_actions.m.
 */
 - (void) insertText: (id)insertString
 {
+  NSLog(@"insertText");
+  
   NSRange insertRange = [self rangeForUserTextChange];
   NSString *string;
   BOOL isAttributed;
