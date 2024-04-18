@@ -3977,6 +3977,7 @@ Figure out how the additional layout stuff is supposed to work.
 			    color: (NSColor *)color
 			 turnedOn: (BOOL)flag
 {
+  // ???
   if (_window == nil)
     {
       return;
@@ -4010,6 +4011,7 @@ Figure out how the additional layout stuff is supposed to work.
 
 - (void) drawRect: (NSRect)rect
 {
+  // ???
   NSRange drawnRange;
   NSRect containerRect = rect;
 
@@ -4045,7 +4047,8 @@ Figure out how the additional layout stuff is supposed to work.
         {
           [self drawInsertionPointInRect: _insertionPointRect
                 color: _insertionPointColor
-                turnedOn: _drawInsertionPointNow];
+                turnedOn: NO];
+//                turnedOn: _drawInsertionPointNow];
         }
     }
 
@@ -6292,6 +6295,7 @@ or add guards
 
 - (void) _blink: (NSTimer *)t
 {
+  // ???
   NSLog(@"_blink");
 
   if (_drawInsertionPointNow)
@@ -6303,7 +6307,7 @@ or add guards
       _drawInsertionPointNow = YES;
     }
   
-//  [self setNeedsDisplayInRect: _insertionPointRect avoidAdditionalLayout: YES];
+  [self setNeedsDisplayInRect: _insertionPointRect avoidAdditionalLayout: YES];
   /* Because we are called by a timer which is independent of any
      event processing in the gui runloop, we need to manually update
      the window.  */
