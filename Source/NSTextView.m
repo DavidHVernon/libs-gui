@@ -6308,7 +6308,7 @@ or add guards
   /* Because we are called by a timer which is independent of any
      event processing in the gui runloop, we need to manually update
      the window.  */
-  [self displayIfNeeded];
+//  [self displayIfNeeded];
 }
 
 - (void) _stopInsertionTimer
@@ -6507,7 +6507,7 @@ or add guards
 - (void) _textCheckingTimerFired: (NSTimer *)t
 {
   NSLog(@"_textCheckingTimerFired");
-  
+
   _textCheckingTimer = nil;
 
   if (nil == _layoutManager)
