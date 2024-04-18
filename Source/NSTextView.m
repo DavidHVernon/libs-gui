@@ -4012,8 +4012,10 @@ Figure out how the additional layout stuff is supposed to work.
 - (void) drawRect: (NSRect)rect
 {
   // ???
-  NSLog(@"drawRect:");
-  
+  NSLog(@"drawRect: [(%f, %f),(%f, %f)]",
+    NSMinX(rect), NSMinY(rect),
+    NSWidth(rect), NSHeight(rect));
+
   NSRange drawnRange;
   NSRect containerRect = rect;
 
