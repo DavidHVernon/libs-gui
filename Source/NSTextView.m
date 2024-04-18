@@ -4012,6 +4012,8 @@ Figure out how the additional layout stuff is supposed to work.
 - (void) drawRect: (NSRect)rect
 {
   // ???
+  NSLog(@"drawRect:");
+  
   NSRange drawnRange;
   NSRect containerRect = rect;
 
@@ -4047,8 +4049,7 @@ Figure out how the additional layout stuff is supposed to work.
         {
           [self drawInsertionPointInRect: _insertionPointRect
                 color: _insertionPointColor
-                turnedOn: NO];
-//                turnedOn: _drawInsertionPointNow];
+                turnedOn: _drawInsertionPointNow];
         }
     }
 
